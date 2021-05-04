@@ -82,9 +82,9 @@
                         <tr>
                             <td valign="middle" align="center">
                                 {% if page == 1 %}
-                                <a href="/admin/article/1">The previous page</a>&nbsp;&nbsp;
+                                <a href="/admin/article/1">Previous page</a>&nbsp;&nbsp;
                                 {% else %}
-                                <a href="/admin/article/{{page - 1}}">The previous page</a>&nbsp;&nbsp;
+                                <a href="/admin/article/{{page - 1}}">Previous page</a>&nbsp;&nbsp;
                                 {% endif %}
 
                                 {% for i in range(total) %}
@@ -92,10 +92,10 @@
                                 {% endfor %}
 
                                 {% if page == total %}
-                                <a href="/admin/article/{{page}}">The next page
+                                <a href="/admin/article/{{page}}">Next page
                                 </a>
                                 {% else %}
-                                <a href="/admin/article/{{page + 1}}">The next page</a>
+                                <a href="/admin/article/{{page + 1}}">Next page</a>
                                 {% endif %}
                             </td>
                         </tr>

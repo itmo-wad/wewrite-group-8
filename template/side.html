@@ -9,7 +9,7 @@
             </div>
 
             <div class="col-12 side">
-                <div class="tip">The latest article</div>
+                <div class="tip">Latest Blogs</div>
                 <ul>
                     {% for row in last %}
                     <li><a href="/article/{{row.articleid}}">{{loop.index}}. {{row.headline | truncate(14)}}</a></li>
