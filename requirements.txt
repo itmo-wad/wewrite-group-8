@@ -1,4 +1,5 @@
-flask
-pymongo
-sqlalchemy
-flask_mongoengine
+requests==2.25.1
+flask_mongoengine==1.0.0
+SQLAlchemy==1.2.19
+Flask==1.1.2
+Pillow==8.2.0
