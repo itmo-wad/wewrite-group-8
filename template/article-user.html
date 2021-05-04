@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        <div class="col-sm-9 col-12" id="left" style="padding: 0px;">
+            <div class="col-12 row article-detail">
+                <div class="col-9 title">
+                    {{article.headline}}
+                </div>
+                <div class="col-3 favorite">
+                    {% if is_favorited == True %}
+                    <label class="favorite-btn" onclick="cancelFavorite('{{article.articleid}}')"><span class="oi oi-heart" aria-hidden="true"></span> Cancel collection</label>
+                    {% else %}
+                    <label class="favorite-btn" onclick="addFavorite('{{article.articleid}}')"><span class="oi oi-heart" aria-hidden="true"></span> Collect this article</label>
+                    {% endif %}
+                    <!---->
+                </div>
+                <div class="col-12 info">
+                    Author：{{user.username}}&nbsp;&nbsp;&nbsp;Category：{{article_type[article.type | string]}}&nbsp;&nbsp;&nbsp;
+                    Date：{{article.createtime}}&nbsp;&nbsp;&nbsp;
+                    Read：{{article.readcount}} time&nbsp;&nbsp;&nbsp;Consumption：{{article.credit}} Point
+                </div>
+                <div class="col-12 content" id="content" style=" word-wrap: break-word; word-break: normal;">
+                    {{content | safe}}
+                </div>
+
+                {% if article.credit > 0 and payed == False %}
+                <div class="col-12 readall">
+                    {% if session.get('islogin') == 'true' %}
+                    <button class="col-sm-10 col-12" onclick="readAll()">
+                        <span class="oi oi-data-transfer-download" aria-hidden="true"></span> read the whole passage
+                        （Consumption points ：{{article['credit']}} branch）
+                    </button>
+                    {% else %}
+                    <button class="col-sm-10 col-12" onclick="showLogin()">
+                        <span class="oi oi-data-transfer-download" aria-hidden="true"></span> You haven't signed in yet. You can read the full text after signing in</button>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% include 'side.html' %}
+
+<script>
+    function readAll() {
+        var param = 'articleid={{article.articleid}}&position={{position}}';
+        $.post('/readall', param, function (data) {
+        if(data=="not credit"){
+                        bootbox.alert({title:"error message", message:"Insufficient points"});
+
+        return;
+        }
+            $("#content").append(data);
+            $(".readall").hide();
+        })
+    }
+
+    function addFavorite(articleid) {
+        $.post('/favorite', 'articleid='+articleid, function (data) {
+            if (data == 'not-login') {
+                bootbox.alert({title:"error message", message:"You haven't logged in yet. You can't collect articles."});
+            }
+            else if (data == 'favorite-pass') {
+                bootbox.alert({title:"info message", message:"The article collection is successful, you can check it in my collection"});
+                $(".favorite-btn").html('<span class="oi oi-heart" aria-hidden="true"></span> Cancel collection');
+                $(".favorite-btn").attr('onclick','').unbind('click');
+            }
+            else {
+                bootbox.alert({title:"error message", message:"Collection article error, please contact the administrator"});
+            }
+        })
+    }
+
+    function cancelFavorite(articleid) {
+        $.ajax({
+            url: '/favorite/' + articleid,
+            type: 'delete',
+            success: function (data) {
+                if (data == 'not-login') {
+                    bootbox.alert({title:"error message", message:"You haven't logged in yet. You can't cancel collecting articles."});
+                }
+                else if (data == 'cancel-pass') {
+                    bootbox.alert({title:"info message", message:"Cancel collection successfully."});
+                    $(".favorite-btn").html('<span class="oi oi-heart aria-hidden="true"></span> Collect this article');
+                    $(".favorite-btn").attr('onclick', '').unbind('click');
+                }
+                else if (data == 'cancel-fail') {
+                    bootbox.alert({title:"error message", message:"Error canceling collection, please contact administrator"});
+                }
+            }
+        });
+    }
+
+
+</script>
+
+{% endblock %}
