@@ -98,4 +98,4 @@ if __name__ == '__main__':
     app.register_blueprint(favorite)
 
     '''app.run(debug=True)'''
-    app.run(debug=True)
+    app.run()
