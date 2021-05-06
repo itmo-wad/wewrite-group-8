@@ -52,9 +52,9 @@
 
             <div class="col-12 paginate">
                 {% if page == 1 %}
-            	<a href="/page/1">previous page</a>&nbsp;&nbsp;
+            	<a href="/page/1">The previous page</a>&nbsp;&nbsp;
                 {% else %}
-                <a href="/page/{{page-1}}">previous page</a>&nbsp;&nbsp;
+                <a href="/page/{{page-1}}">The previous page</a>&nbsp;&nbsp;
                 {% endif %}
 
                 {% for i in range(total) %}
@@ -62,9 +62,9 @@
                 {% endfor %}
 
                 {% if page == total %}
-            	<a href="/page/{{total}}">next page</a>
+            	<a href="/page/{{total}}">The next page</a>
                 {% else %}
-                <a href="/page/{{page+1}}">next page</a>
+                <a href="/page/{{page+1}}">The next page</a>
                 {% endif %}
             </div>
 
