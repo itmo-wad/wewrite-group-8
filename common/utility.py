@@ -49,9 +49,9 @@ def send_email(receiver, ecode):
     sender = 'Blog <15903523@qq.com>'
     content = f"<br/>Welcome to register blog system account, your email verification code is：" \
         f"<span style='color: red; font-size: 20px;'>{ecode}</span>，" \
-        f"Please copy to the registration window to complete the registration. Thank you for your support.<br/>"
+        f"Please copy to the registration window to complete the registration. Thank you for joining our wewrite community.<br/>"
     message = MIMEText(content, 'html', 'utf-8')
-    message['Subject'] = Header('Podcast registration verification code', 'utf-8')
+    message['Subject'] = Header('Wewrite registration verification code', 'utf-8')
     message['From'] = sender
     message['To'] = receiver
 
