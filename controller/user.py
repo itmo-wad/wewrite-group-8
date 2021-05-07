@@ -55,7 +55,7 @@ def register():
         session['role'] = result.role
         Credit().insert_detail(type='User registration',target='0',credit=50)
         return 'reg-pass'
-
+# user registration 
 @user.route('/login', methods=['POST'])
 def login():
     user = Users()
@@ -63,7 +63,7 @@ def login():
     password = request.form.get('password').strip()
     vcode = request.form.get('vcode').lower().strip()
 
-    if vcode != session.get('vcode') and vcode != '0000':
+    if vcode != session.get('vcode') and vcode != '0000': #check verification code
         return 'vcode-error'
 
     else:
