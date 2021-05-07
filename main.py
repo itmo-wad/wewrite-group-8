@@ -97,5 +97,5 @@ if __name__ == '__main__':
     from controller.favorite import *
     app.register_blueprint(favorite)
 
-    app.run(host='0.0.0.0', port=5002, debug=
+    app.run(host='0.0.0.0', port=5000, debug=
            False)
