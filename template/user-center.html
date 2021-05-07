@@ -1,0 +1,51 @@
+{% extends "center.html"%}
+{% block center %}
+                    <table class="table col-12">
+                        <thead style="font-weight: bold">
+                        <tr>
+                            <td width="10%" align="center"> number</td>
+                            <td width="60%">The title</td>
+                            <td width="8%" align="center">browse</td>
+                            <td width="14%" align="center">operation</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for  foo in result %}
+                        <tr>
+                            <td align="center">{{foo.article.articleid}}</td>
+                            <td><a href="/article/{{foo.article.articleid}}" target="_blank">{{foo.article.headline}}</a></td>
+                            <td align="center">{{foo.article.readcount}}</td>
+                            <td align="center">
+                                <a href="#" onclick="cancelFavorite({{foo.article.articleid}})">
+                                   Cancel
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+
+<script>
+
+
+    function cancelFavorite(articleid) {
+        $.ajax({
+            url: '/favorite/' + articleid,
+            type: 'delete',
+            success: function (data) {
+                if (data == 'not-login') {
+                    bootbox.alert({title:"error message", message:"You haven't logged in yet. You can't cancel collecting articles."});
+                }
+                else if (data == 'cancel-pass') {
+                    bootbox.alert({title:"info message", message:"Cancel collection successfully."});
+                    $(".favorite-btn").html('<span class="oi oi-heart aria-hidden="true"></span> Collect this article');
+                    $(".favorite-btn").attr('onclick', '').unbind('click');
+                }
+                else if (data == 'cancel-fail') {
+                    bootbox.alert({title:"error message", message:"Error canceling collection, please contact administrator"});
+                }
+            }
+        });
+    }
+</script>
+{%endblock%}

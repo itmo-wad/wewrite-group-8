@@ -1,0 +1,82 @@
+{% extends "center.html"%}
+{% block center %}
+<table class="table col-12">
+    <thead style="font-weight: bold">
+    <tr>
+        <td width="10%" align="center"> number</td>
+        <td width="20%">The title</td>
+        <td width="8%" align="center">hidden</td>
+        <td width="8%" align="center">checked</td>
+        <td width="8%" align="center">drafted</td>
+        <td width="24%" align="center">operation</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for article in result %}
+    <tr>
+        <td align="center">{{article.articleid}}</td>
+        <td><a href="/article/{{article.articleid}}" target="_blank">{{article.headline}}</a></td>
+
+        <td align="center">
+            {%if article.hidden%}
+            hidden
+
+            {%else%}
+            show
+            {%endif%}
+        </td>
+        <td align="center">
+            {%if article.checked%}
+            pass
+
+            {%else%}
+            fail
+            {%endif%}
+        </td>
+        <td align="center">
+
+            {%if article.drafted%}
+            drafted
+            {%else%}
+            Published
+            {%endif%}
+
+        </td>
+        <td align="center">
+            {%if article.hidden%}
+            <a class="btn btn-primary" href="/admin/article/hide2/{{article.articleid}}">show</a>
+
+            {%else%}
+            <a class="btn btn-primary" href="/admin/article/hide2/{{article.articleid}}">hidden</a>
+            {%endif%}
+            {%if article.drafted%}
+            <a class="btn btn-primary" href="/admin/article/drafted/{{article.articleid}}">publish</a>
+            <a class="btn btn-primary" href="/user/post?id={{article.articleid}}">edit</a>
+
+            {%endif%}
+
+        </td>
+    </tr>
+    </tbody>
+    {% endfor %}
+</table>
+
+<script>
+
+        function switchHide(obj, articleid) {
+        $.get('/admin/article/hide/' + articleid, function (data) {
+                    console.log(data==true)
+
+            if (data == "True") {
+                        console.log("-----")
+
+            console.log(data=="True")
+                $(obj).html('<font color="red">hidden</font>');
+            }
+            else {
+                $(obj).text('show');
+            }
+        });
+    }
+</script>
+{%endblock%}
