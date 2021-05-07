@@ -6,7 +6,7 @@ app = Flask(__name__, template_folder='template', static_url_path='/', static_fo
 app.config['SECRET_KEY'] = os.urandom(24)
 app.config['MONGODB_SETTINGS'] = {
     'db':   'blog2',
-    'host': '127.0.0.1',
+    'host': 'localhost',
     'port': 27017
 }
 db = MongoEngine(app)
@@ -97,5 +97,4 @@ if __name__ == '__main__':
     from controller.favorite import *
     app.register_blueprint(favorite)
 
-    app.run(host='0.0.0.0', port=5000, debug=
-           False)
+    app.run(host='localhost', port=5000, debug=False)
