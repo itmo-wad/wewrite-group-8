@@ -6,7 +6,7 @@ from module.users import Users
 import json
 
 user = Blueprint('user', __name__)
-
+# usr verification 
 @user.route('/vcode')
 def vcode():
     code, bstring = ImageCode().get_code()
