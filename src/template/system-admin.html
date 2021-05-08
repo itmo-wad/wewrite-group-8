@@ -7,7 +7,7 @@
         <div class="col-sm-3 col-12" style="padding: 0px 10px; ">
             <div class="col-12 admin-side" style="height: 360px">
                 <ul>
-                    <li><a href="/admin"><span class="oi oi-image" aria-hidden="true"></span>&nbsp;&nbsp; article
+                    <li><a href="/admin"><span class="oi oi-image" aria-hidden="true"></span>&nbsp;&nbsp; Article
                         management</a></li>
                     <li><a href="/admin/user"><span class="oi oi-person" aria-hidden="true"></span>&nbsp;&nbsp;User
                         management</a></li>
@@ -82,9 +82,9 @@
                         <tr>
                             <td valign="middle" align="center">
                                 {% if page == 1 %}
-                                <a href="/admin/article/1">The previous page</a>&nbsp;&nbsp;
+                                <a href="/admin/article/1">Previous</a>&nbsp;&nbsp;
                                 {% else %}
-                                <a href="/admin/article/{{page - 1}}">The previous page</a>&nbsp;&nbsp;
+                                <a href="/admin/article/{{page - 1}}">Previous</a>&nbsp;&nbsp;
                                 {% endif %}
 
                                 {% for i in range(total) %}
@@ -92,10 +92,10 @@
                                 {% endfor %}
 
                                 {% if page == total %}
-                                <a href="/admin/article/{{page}}">The next page
+                                <a href="/admin/article/{{page}}">Next
                                 </a>
                                 {% else %}
-                                <a href="/admin/article/{{page + 1}}">The next page</a>
+                                <a href="/admin/article/{{page + 1}}">Next</a>
                                 {% endif %}
                             </td>
                         </tr>
