@@ -7,7 +7,7 @@
         <td width="20%">The title</td>
         <td width="8%" align="center">hidden</td>
         <td width="8%" align="center">checked</td>
-        <td width="8%" align="center">drafted</td>
+        <td width="8%" align="center">Draft</td>
         <td width="24%" align="center">operation</td>
     </tr>
     </thead>
@@ -47,7 +47,7 @@
             <a class="btn btn-primary" href="/admin/article/hide2/{{article.articleid}}">show</a>
 
             {%else%}
-            <a class="btn btn-primary" href="/admin/article/hide2/{{article.articleid}}">hidden</a>
+            <a class="btn btn-primary" href="/admin/article/hide2/{{article.articleid}}">hide</a>
             {%endif%}
             {%if article.drafted%}
             <a class="btn btn-primary" href="/admin/article/drafted/{{article.articleid}}">publish</a>

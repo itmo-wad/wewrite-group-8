@@ -52,21 +52,22 @@
 
             <div class="col-12 paginate">
                 {% if page == 1 %}
-            	<a href="/search/1-{{keyword}}">The previous page</a>&nbsp;&nbsp;
+            	<a href="/page/1">Previous</a>&nbsp;&nbsp;
                 {% else %}
-                <a href="/search/{{page-1}}-{{keyword}}">The previous page</a>&nbsp;&nbsp;
+                <a href="/page/{{page-1}}">Previous</a>&nbsp;&nbsp;
                 {% endif %}
 
                 {% for i in range(total) %}
-                <a href="/search/{{i+1}}-{{keyword}}">{{i+1}}</a>&nbsp;&nbsp;
+                <a href="/page/{{i+1}}">{{i+1}}</a>&nbsp;&nbsp;
                 {% endfor %}
 
                 {% if page == total %}
-            	<a href="/search/{{total}}-{{keyword}}">The next page</a>
+            	<a href="/page/{{total}}">Next</a>
                 {% else %}
-                <a href="/search/{{page+1}}-{{keyword}}">The next page</a>
+                <a href="/page/{{page+1}}">Next</a>
                 {% endif %}
             </div>
+
 
         </div>
 
