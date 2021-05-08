@@ -6,7 +6,7 @@ app = Flask(__name__, template_folder='template', static_url_path='/', static_fo
 app.config['SECRET_KEY'] = os.urandom(24)
 app.config['MONGODB_SETTINGS'] = {
     'db':   'blog2',
-    'host': '127.0.0.1',
+    'host': 'mongodb',
     'port': 27017
 }
 db = MongoEngine(app)
