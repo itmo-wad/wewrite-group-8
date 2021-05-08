@@ -63,7 +63,7 @@ def login():
     password = request.form.get('password').strip()
     vcode = request.form.get('vcode').lower().strip()
 
-    if vcode != session.get('vcode') and vcode != '0000': #check verification code
+    if vcode != session.get('vcode'): #check verification code
         return 'vcode-error'
 
     else:
