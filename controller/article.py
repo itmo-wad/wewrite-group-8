@@ -64,7 +64,7 @@ def read_all():
     result = article.find_by_id(articleid)
     content = result[0].content[position:]
     user=Users().find_by_userid(session.get("userid"))
-    if user.credit<result[0].credit():
+    if user.credit<result[0].credit:
         return "not credit"
 
     payed = Credit().check_payed_article(articleid)
