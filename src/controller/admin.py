@@ -26,7 +26,7 @@ def admin_article(page):
     result = article.find_all_except_draft(start, pagesize)
     total = math.ceil(article.get_count_except_draft() / pagesize)
     return render_template('system-admin.html', page=page, result=result, total=total)
-
+# search route
 @admin.route('/admin/type/<int:type>-<int:page>')
 def admin_search_type(type, page):
     pagesize = 50

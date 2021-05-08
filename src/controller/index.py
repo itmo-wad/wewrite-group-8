@@ -19,7 +19,7 @@ def classify(type, page):
     most = article.find_most_9()
 
     return render_template('type.html', result=result, page=page, total=total, type=type,last=last,most=most)
-#
+#search route 
 @index.route('/search/<int:page>-<keyword>')
 def search(page, keyword):
     keyword = keyword.strip()
